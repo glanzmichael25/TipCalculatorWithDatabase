@@ -1,6 +1,7 @@
 package com.example.glanz.tipcalculator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -24,6 +25,7 @@ public class TipCalculatorActivity extends Activity
     private TextView tipTextView;
     private TextView totalTextView;
     private Button   saveButton;
+    private Button viewHistoryButton;
 
     // define instance variables that should be saved
     private String billAmountString = "";
@@ -48,12 +50,14 @@ public class TipCalculatorActivity extends Activity
         tipTextView = (TextView) findViewById(R.id.tipTextView);
         totalTextView = (TextView) findViewById(R.id.totalTextView);
         saveButton = (Button) findViewById(R.id.saveButton);
+        viewHistoryButton = (Button) findViewById(R.id.viewHistoryButton);
 
         // set the listeners
         billAmountEditText.setOnEditorActionListener(this);
         percentUpButton.setOnClickListener(this);
         percentDownButton.setOnClickListener(this);
         saveButton.setOnClickListener(this);
+        viewHistoryButton.setOnClickListener(this);
 
         // get default SharedPreferences object
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -146,6 +150,7 @@ public class TipCalculatorActivity extends Activity
                 break;
             case R.id.viewHistoryButton:
                 // start activity here...
+                startActivity(new Intent(this, TipHistoryActivity.class));
                 break;
         }
     }
